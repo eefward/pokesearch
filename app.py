@@ -1,7 +1,5 @@
 from flask import Flask, render_template, request
 import requests
-import json
-import os
 from fuzzywuzzy import process
 
 app = Flask(__name__, template_folder=".")
