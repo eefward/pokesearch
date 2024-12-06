@@ -8,8 +8,6 @@ app = Flask(__name__, template_folder=".")
 
 baseUrl = 'https://pokeapi.co/api/v2/'
 
-os.makedirs('cache', exist_ok=True)
-
 def getPokemonInfo(name):
     url = f"{baseUrl}pokemon/{name}"
     response = requests.get(url)
@@ -25,9 +23,6 @@ def getPokemonInfo(name):
         
         # Stats
         basestats = {stat['stat']['name']: stat['base_stat'] for stat in pokemonData['stats']}
-        
-        with open(f"cache/{name}.json", 'w') as file:
-            file.write(json.dumps({f"{name}": pokemonData}, indent=4)) 
         
         return pokemonData, types, spriteurl, basestats
     else:
