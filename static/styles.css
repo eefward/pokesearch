@@ -1,10 +1,21 @@
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
 body {
-    margin: 0;
-    padding: 0;
     background-color: skyblue;
     color: black;
     font-family: 'Indie Flower', sans-serif;
-    font-size: 25px;
+    font-size: 35px;
 }
 
 .pokemon-info {
@@ -23,8 +34,8 @@ body {
 }
 
 .pokemon-image {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     margin-left: 25px;
 }
 
@@ -32,22 +43,20 @@ body {
     margin-right: 10px;
 }
 
-.red-text {
-    color: #f44336;
-}
-
-.white-text {
-    color: white;
-    margin-right: 10px; 
-}
-
 form {
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 40px;
 }
 
-form {
-    margin-top: 40px;
+input[type="text"] {
+    padding: 8px;
+    font-size: 25px;
+    border: 1px solid #ccc;
+    font-family: 'Indie Flower', sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 10%; 
 }
 
 .error-message {
@@ -55,19 +64,6 @@ form {
     font-size: 1.2em;
     text-align: center;
     margin-top: 20px;
-}
-
-h1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 45px;
-    margin-top: 20px;
-}
-
-h2 {
-    font-size: 35px;
-    margin-bottom: 10px;
 }
 
 .magnifying-glass {
@@ -79,8 +75,8 @@ h2 {
     background-color: #4CAF50;
     font-family: 'Indie Flower', sans-serif;
     color: white;
-    font-size: 16px;
-    padding: 5px 10px;
+    font-size: 20px;
+    padding: 10px 20px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -90,6 +86,10 @@ h2 {
     background-color: #66c56b;
   }
 
+.white-text {
+    color: white;
+    margin-right: 10px; 
+}
 
 .yellow {
     color: yellow;
