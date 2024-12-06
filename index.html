@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!--https://fontawesome.com/icons-->
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pokésearch</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
+</head>
+<body>
+
+    <h1>
+        <span class="red-text">poké</span><span class="white-text">search</span>
+        <i class="fas fa-search magnifying-glass"></i>
+    </h1>    
+    
+    <form action="/" method="POST">
+        <label for="name">Pokemon Name:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit" class="button">Search</button>
+    </form>
+    <hr>
+
+    {% if errorMessage %}
+        <div class="error-text">
+            <p><strong>{{ errorMessage }}</strong></p>
+            {% if suggestions %}
+                <ul>
+                    {% for suggestion in suggestions %}
+                        <li>{{ suggestion[0] }}</li> 
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {% if pokemonInfo %}
+        <div class="pokemon-info">
+            <div class="pokemon-text">
+                <h2>{{ pokemonInfo['name'] | capitalize }}</h2>
+                <p><strong>ID:</strong>  {{ pokemonInfo['id'] }}</p>
+                <p><strong>Height:</strong>  {{ pokemonInfo['height'] * 10 }} centimeters</p>
+                
+                <p><strong>Type(s):</strong>
+                    {% for type in pokemonTypes %}
+                        {% if type == "electric" %}
+                            <span class="yellow">{{ type | capitalize }}</span>
+                        {% elif type == "water" or type == "ice" %}
+                            <span class="blue">{{ type | capitalize }}</span>
+                        {% elif type == "fire" %}
+                            <span class="red">{{ type | capitalize }}</span>
+                        {% elif type == "grass" or type == "bug" %}
+                            <span class="green">{{ type | capitalize }}</span>
+                        {% elif type == "psychic" or type == "fairy" %}
+                            <span class="pink">{{ type | capitalize }}</span>
+                        {% elif type == "dragon" or type == "poison" %}
+                            <span class="purple">{{ type | capitalize }}</span>
+                        {% elif type == "ghost" or type == "normal" or type == "flying" %}
+                            <span class="grey">{{ type | capitalize }}</span>
+                        {% elif type == "ground" or type == "rock" or type == "steel" or type == "fighting" %}
+                            <span class="brown">{{ type | capitalize }}</span>
+                        {% else %}
+                            <span>{{ type | capitalize }}</span> 
+                        {% endif %}
+                        {% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                
+                <h3>Base Stats</h3>
+                <ul>
+                    {% for stat, value in baseStats.items() %}
+                        <li>{{ stat | capitalize }}: {{ value }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            {% if spriteUrl %}
+                <img src="{{ spriteUrl }}" alt="{{ pokemonInfo['name'] }} image" class="pokemon-image" />
+            {% else %}
+                <p>Image doesn't exist</p>
+            {% endif %}
+        </div>
+    {% endif %}
+</body>
+</html>
